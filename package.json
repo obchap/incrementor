@@ -1,0 +1,25 @@
+{
+  "name": "incrementor",
+  "version": "0.0.1",
+  "description": "Increment numeric and alpha numeric values",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VtoCorleone/incrementor.git"
+  },
+  "keywords": [
+    "increment",
+    "number",
+    "alphanumeric",
+    "sequence"
+  ],
+  "author": "VtoCorleone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VtoCorleone/incrementor/issues"
+  },
+  "homepage": "https://github.com/VtoCorleone/incrementor#readme"
+}
