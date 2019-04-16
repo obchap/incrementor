@@ -23,7 +23,11 @@
   },
   "homepage": "https://github.com/VtoCorleone/incrementor#readme",
   "devDependencies": {
-    "jest": "^24.7.1"
+    "eslint": "5.16.0",
+    "eslint-plugin-import": "2.17.1",
+    "eslint-plugin-jsx-a11y": "6.2.1",
+    "eslint-plugin-react": "7.12.4",
+    "jest": "24.7.1"
   },
   "jest": {
     "testMatch": [
