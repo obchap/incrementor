@@ -1,15 +1,15 @@
-function Incrementor(type = 'num') {
-  if (type !== 'num') {
+function Incrementor({ type = 'integer' }) {
+  if (type !== 'integer') {
     this.error = new Error(`Invalid type: ${type}`);
   } else {
     this.error = null;
   }
-  
+
   this.type = type;
 };
 
 Incrementor.prototype.increment = function increment(value) {
-  if (this.type === 'num') {
+  if (this.type === 'integer') {
     return {
       value: value += 1,
       error: null,
