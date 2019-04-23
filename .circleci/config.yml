@@ -35,3 +35,7 @@ jobs:
 
       # run tests!
       - run: npm t
+
+      - run: npm version patch
+
+      - run: git push
