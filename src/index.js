@@ -27,21 +27,15 @@ Incrementor.prototype.increment = function increment(value) {
   }
 
   if (this.type === incrementorType.NUMERIC) {
-    try {
-      let num = Number.parseInt(value, 10);
-      const incremented = `${num += 1}`;
+    const num = Number.parseInt(value, 10);
 
-      if (this.leftPadding > 0) {
-        if (incremented.length < this.leftPadding) {
-          const diff = this.leftPadding - incremented.length + 1;
-          return {
-            value: incremented.padStart(diff, '0'),
-            error: null,
-          };
-        }
+    const incremented = `${num + 1}`;
 
+    if (this.leftPadding > 0) {
+      if (incremented.length < this.leftPadding) {
+        const diff = this.leftPadding - incremented.length + 1;
         return {
-          value: incremented,
+          value: incremented.padStart(diff, '0'),
           error: null,
         };
       }
@@ -50,12 +44,12 @@ Incrementor.prototype.increment = function increment(value) {
         value: incremented,
         error: null,
       };
-    } catch (error) {
-      return {
-        value: null,
-        error,
-      };
     }
+
+    return {
+      value: incremented,
+      error: null,
+    };
   }
 
   return {
