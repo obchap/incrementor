@@ -101,7 +101,10 @@ const increment = ({ type, leftPadding }, value) => {
       return accumulator;
     }, { reversedCharacters: [], doesIncrement: true });
 
-    return reversedCharacters.reverse().join('');
+    return {
+      error: null,
+      value: reversedCharacters.reverse().join(''),
+    };
   }
 
   return {

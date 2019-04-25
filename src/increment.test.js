@@ -3,9 +3,9 @@ const { incrementorType } = require('./enums');
 
 describe('increment', () => {
   test('should return error when options.type is not a valid type', () => {
-    const { error, value } = increment({ type: 'alpha' }, 3);
+    const { error, value } = increment({ type: 'wrong-type' }, 3);
     expect(value).toBeNull();
-    expect(error).toEqual(new Error('Invalid type: alpha'));
+    expect(error).toEqual(new Error('Invalid type: wrong-type'));
   });
 
   describe(`type ${incrementorType.INTEGER}`, () => {
@@ -69,6 +69,32 @@ describe('increment', () => {
       const { error, value } = increment(options, '11123');
       expect(error).toBeNull();
       expect(value).toBe('11124');
+    });
+  });
+
+  describe(`type ${incrementorType.ALPHA}`, () => {
+    test('should return an error when value passed in is not characters a-z or A-Z', () => {
+      const { error, value } = increment({ type: incrementorType.ALPHA }, 'abc123');
+      expect(value).toBeNull();
+      expect(error).toEqual(new Error(`The value for type ${incrementorType.ALPHA} must only have characters between a-z and A-Z`));
+    });
+
+    test('should increment the value aa to ab', () => {
+      const { error, value } = increment({ type: incrementorType.ALPHA }, 'aa');
+      expect(error).toBeNull();
+      expect(value).toBe('ab');
+    });
+
+    test('should increment the value az to aA', () => {
+      const { error, value } = increment({ type: incrementorType.ALPHA }, 'az');
+      expect(error).toBeNull();
+      expect(value).toBe('aA');
+    });
+
+    test('should increment the value aZ to ba', () => {
+      const { error, value } = increment({ type: incrementorType.ALPHA }, 'aZ');
+      expect(error).toBeNull();
+      expect(value).toBe('ba');
     });
   });
 });
