@@ -6,7 +6,7 @@ const incrementorType = {
 
 function Incrementor({
   type = incrementorType.INTEGER,
-  leftPadding = 0,
+  leftPadValue = 0,
 }) {
   if (type !== incrementorType.INTEGER || type !== incrementorType.NUMERIC) {
     this.error = new Error(`Invalid type: ${type}`);
@@ -15,7 +15,7 @@ function Incrementor({
   }
 
   this.type = type;
-  this.leftPadding = leftPadding;
+  this.leftPadValue = leftPadValue;
 }
 
 Incrementor.prototype.increment = function increment(value) {
@@ -31,9 +31,9 @@ Incrementor.prototype.increment = function increment(value) {
 
     const incremented = `${num + 1}`;
 
-    if (this.leftPadding > 0) {
-      if (incremented.length < this.leftPadding) {
-        const diff = this.leftPadding - incremented.length + 1;
+    if (this.leftPadValue > 0) {
+      if (incremented.length < this.leftPadValue) {
+        const diff = this.leftPadValue - incremented.length + 1;
         return {
           value: incremented.padStart(diff, '0'),
           error: null,
