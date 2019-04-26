@@ -56,11 +56,22 @@ describe('increment', () => {
       expect(value).toBe('24');
     });
 
-    test('should increment the value by 1 and add the left padding is greater than the value length', () => {
+    test('should increment 23 by 1 and add the left padding of 3 => 3324', () => {
       const options = {
         type: incrementorType.NUMERIC,
         leftPadLength: 4,
-        leftPadValue: '0',
+        leftPadValue: '3',
+      };
+
+      const { error, value } = increment(options, '23');
+      expect(error).toBeNull();
+      expect(value).toBe('3324');
+    });
+
+    test('should increment 23 by 1 and add the default left padding of 0 => 0024', () => {
+      const options = {
+        type: incrementorType.NUMERIC,
+        leftPadLength: 4,
       };
 
       const { error, value } = increment(options, '23');

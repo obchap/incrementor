@@ -5,6 +5,7 @@ const { incrementorType } = require('./enums');
  * @param {object} options - the options used by the incrementor
  * @param {incrementorType} options.type - what type of object is being incremented
  * @param {number} options.leftPadLength - set the amount of padding to the left of a numeric value
+ * @param {number} options.leftPadValue - the character to set the padding with
  * @param {string | number} value - the value to be incremented
  * @returns {object} results
  * @returns {string | number} results.value - incremented value passed in
@@ -47,7 +48,8 @@ const increment = ({ type, leftPadLength, leftPadValue }, value) => {
     const incremented = `${num + 1}`;
 
     if (leftPadLength > 0) {
-      if (!numberValidator.test(`${leftPadValue}`)) {
+      const padValue = leftPadValue || '0';
+      if (!numberValidator.test(`${padValue}`)) {
         return {
           error: new Error('options.leftPadValue must only have string representations of numbers'),
           value: null,
@@ -56,7 +58,7 @@ const increment = ({ type, leftPadLength, leftPadValue }, value) => {
 
       if (incremented.length < leftPadLength) {
         return {
-          value: incremented.padStart(leftPadLength, leftPadValue),
+          value: incremented.padStart(leftPadLength, padValue),
           error: null,
         };
       }
