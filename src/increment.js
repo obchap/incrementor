@@ -10,7 +10,7 @@ const { incrementorType } = require('./enums');
  * @returns {string | number} results.value - incremented value passed in
  * @returns {Error} results.error - error while trying to increment the value
  */
-const increment = ({ type, leftPadAmount }, value) => {
+const increment = ({ type, leftPadAmount, leftPadValue }, value) => {
   if (type === incrementorType.INTEGER) {
     if (typeof value !== 'number') {
       return {
@@ -35,13 +35,19 @@ const increment = ({ type, leftPadAmount }, value) => {
       };
     }
 
-
     const incremented = `${num + 1}`;
 
     if (leftPadAmount > 0) {
+      if (!new RegExp('^[0-9]+$').test(`${leftPadValue}`)) {
+        return {
+          error: new Error('options.leftPadValue must only have string representations of numbers'),
+          value: null,
+        };
+      }
+
       if (incremented.length < leftPadAmount) {
         return {
-          value: incremented.padStart(leftPadAmount, '0'),
+          value: incremented.padStart(leftPadAmount, leftPadValue),
           error: null,
         };
       }

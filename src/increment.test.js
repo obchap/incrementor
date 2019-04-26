@@ -29,6 +29,18 @@ describe('increment', () => {
       expect(error).toEqual(new Error('Value needs to be a numeric value represented as a string'));
     });
 
+    test('should return an error when leftPadValue is not a numeric string', () => {
+      const options = {
+        type: incrementorType.NUMERIC,
+        leftPadAmount: 4,
+        leftPadValue: 'aa',
+      };
+
+      const { error, value } = increment(options, '23');
+      expect(value).toBeNull();
+      expect(error).toEqual(new Error('options.leftPadValue must only have string representations of numbers'));
+    });
+
     test('should increment the value by 1 with no left padding', () => {
       const { error, value } = increment({ type: incrementorType.NUMERIC }, '23');
       expect(error).toBeNull();
@@ -39,6 +51,7 @@ describe('increment', () => {
       const options = {
         type: incrementorType.NUMERIC,
         leftPadAmount: 4,
+        leftPadValue: '0',
       };
 
       const { error, value } = increment(options, '23');
@@ -53,6 +66,7 @@ describe('increment', () => {
       const options = {
         type: incrementorType.NUMERIC,
         leftPadAmount: 4,
+        leftPadValue: '0',
       };
 
       const { error, value } = increment(options, '00023');
@@ -64,6 +78,7 @@ describe('increment', () => {
       const options = {
         type: incrementorType.NUMERIC,
         leftPadAmount: 4,
+        leftPadValue: '0',
       };
 
       const { error, value } = increment(options, '11123');
