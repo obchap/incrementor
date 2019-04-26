@@ -15,7 +15,7 @@ describe('Incrementor', () => {
     });
 
     test('should increment value by 1 when type is \'numeric\'', () => {
-      const incrementor = new Incrementor({ type: 'numeric', leftPadAmount: 4 });
+      const incrementor = new Incrementor({ type: 'numeric', leftPadLength: 4 });
       const { error, value } = incrementor.increment(3);
       expect(error).toBeNull();
       expect(value).toBe('0004');

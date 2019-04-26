@@ -32,7 +32,7 @@ describe('increment', () => {
     test('should return an error when leftPadValue is not a numeric string', () => {
       const options = {
         type: incrementorType.NUMERIC,
-        leftPadAmount: 4,
+        leftPadLength: 4,
         leftPadValue: 'aa',
       };
 
@@ -50,7 +50,7 @@ describe('increment', () => {
     test('should increment the value by 1 and add the left padding is greater than the value length', () => {
       const options = {
         type: incrementorType.NUMERIC,
-        leftPadAmount: 4,
+        leftPadLength: 4,
         leftPadValue: '0',
       };
 
@@ -61,11 +61,11 @@ describe('increment', () => {
 
     test('should increment the value by 1 and add the left padding length when the value has 0 as it\'s padding', () => {
       // NOTE: this test is true because the code will strip the value to 23, increment and
-      //       then add the leftPadAmount.  In the future, a flag could be passed in to preserve
+      //       then add the leftPadLength.  In the future, a flag could be passed in to preserve
       //       the original padding if that's a feature openly requested.
       const options = {
         type: incrementorType.NUMERIC,
-        leftPadAmount: 4,
+        leftPadLength: 4,
         leftPadValue: '0',
       };
 
@@ -74,10 +74,10 @@ describe('increment', () => {
       expect(value).toBe('0024');
     });
 
-    test('should increment the value by 1 and not add the leftPadAmount if the value length is greater than the leftPadAmount value', () => {
+    test('should increment the value by 1 and not add the leftPadLength if the value length is greater than the leftPadLength value', () => {
       const options = {
         type: incrementorType.NUMERIC,
-        leftPadAmount: 4,
+        leftPadLength: 4,
         leftPadValue: '0',
       };
 

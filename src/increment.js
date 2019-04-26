@@ -4,13 +4,13 @@ const { incrementorType } = require('./enums');
  *
  * @param {object} options - the options used by the incrementor
  * @param {incrementorType} options.type - what type of object is being incremented
- * @param {number} options.leftPadAmount - set the amount of padding to the left of a numeric value
+ * @param {number} options.leftPadLength - set the amount of padding to the left of a numeric value
  * @param {string | number} value - the value to be incremented
  * @returns {object} results
  * @returns {string | number} results.value - incremented value passed in
  * @returns {Error} results.error - error while trying to increment the value
  */
-const increment = ({ type, leftPadAmount, leftPadValue }, value) => {
+const increment = ({ type, leftPadLength, leftPadValue }, value) => {
   if (type === incrementorType.INTEGER) {
     if (typeof value !== 'number') {
       return {
@@ -26,28 +26,30 @@ const increment = ({ type, leftPadAmount, leftPadValue }, value) => {
   }
 
   if (type === incrementorType.NUMERIC) {
-    const num = Number.parseInt(value, 10);
+    const numberValidator = new RegExp('^[0-9]+$');
 
-    if (Number.isNaN(num)) {
+    if (!numberValidator.test(value)) {
       return {
         value: null,
         error: new Error('Value needs to be a numeric value represented as a string'),
       };
     }
 
+    const num = Number.parseInt(value, 10);
+
     const incremented = `${num + 1}`;
 
-    if (leftPadAmount > 0) {
-      if (!new RegExp('^[0-9]+$').test(`${leftPadValue}`)) {
+    if (leftPadLength > 0) {
+      if (!numberValidator.test(`${leftPadValue}`)) {
         return {
           error: new Error('options.leftPadValue must only have string representations of numbers'),
           value: null,
         };
       }
 
-      if (incremented.length < leftPadAmount) {
+      if (incremented.length < leftPadLength) {
         return {
-          value: incremented.padStart(leftPadAmount, leftPadValue),
+          value: incremented.padStart(leftPadLength, leftPadValue),
           error: null,
         };
       }
