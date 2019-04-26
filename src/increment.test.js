@@ -8,6 +8,15 @@ describe('increment', () => {
     expect(error).toEqual(new Error('Invalid type: wrong-type'));
   });
 
+  test('should return error when options.leftPadLength is not a valid number', () => {
+    const { error, value } = increment({
+      type: incrementorType.INTEGER,
+      leftPadLength: '4',
+    }, 3);
+    expect(value).toBeNull();
+    expect(error).toEqual(new Error('options.leftPadLength has to be a number'));
+  });
+
   describe(`type ${incrementorType.INTEGER}`, () => {
     test(`should return error when options.type is ${incrementorType.INTEGER} but the value passed in is not a number`, () => {
       const { error, value } = increment({ type: incrementorType.INTEGER }, '3');

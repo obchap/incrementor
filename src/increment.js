@@ -11,6 +11,13 @@ const { incrementorType } = require('./enums');
  * @returns {Error} results.error - error while trying to increment the value
  */
 const increment = ({ type, leftPadLength, leftPadValue }, value) => {
+  if (leftPadLength && typeof leftPadLength !== 'number') {
+    return {
+      value: null,
+      error: new Error('options.leftPadLength has to be a number'),
+    };
+  }
+
   if (type === incrementorType.INTEGER) {
     if (typeof value !== 'number') {
       return {
