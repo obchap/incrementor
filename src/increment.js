@@ -1,6 +1,6 @@
 const { incrementorType } = require('./enums');
 
-/** Increment the given value
+/** Increment the value passed in
  *
  * @param {object} options - the options used by the incrementor
  * @param {incrementorType} options.type - what type of object is being incremented
