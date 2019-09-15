@@ -8,6 +8,7 @@ name: Running Liquid
 on:
   push:
     paths:
+      - "*"
       - "src/increment.js"
     # branches:
     #   - "!staging"
