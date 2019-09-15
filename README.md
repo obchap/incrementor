@@ -1,2 +1,3 @@
 # incrementor
-Help increment numeric and alpha numeric values
+
+Increment numeric and alpha numeric values
