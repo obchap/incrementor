@@ -1,4 +1,3 @@
-
 const incrementorType = {
   INTEGER: 'integer',
   NUMERIC: 'numeric',
