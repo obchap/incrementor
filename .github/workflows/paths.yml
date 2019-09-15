@@ -1,0 +1,24 @@
+# https://help.github.com/en/articles/workflow-syntax-for-github-actions
+
+# This is the name that shows up in the list of GitHub actions
+name: Running Liquid
+
+# What kind of trigger to run on
+# https://help.github.com/en/articles/events-that-trigger-workflows
+on:
+  push:
+    paths:
+      - "src/increment.js"
+    # branches:
+    #   - "!staging"
+    #   - "!master"
+
+jobs:
+  # This is the name that shows up in the actual GitHub actions run
+  Paths-Test:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Say Hello
+        run: |
+          echo hello world
