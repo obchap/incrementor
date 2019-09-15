@@ -126,7 +126,7 @@ const increment = ({ type, leftPadLength, leftPadValue }, value) => {
 
   return {
     value: null,
-    error: new Error(`Invalid incrementor type: ${type}`),
+    error: new Error(`Invalid type: ${type}`),
   };
 };
 
