@@ -9,7 +9,7 @@ on:
   push:
     paths:
       - "*"
-      - "src/increment.js"
+      - "!src/increment.js"
     # branches:
     #   - "!staging"
     #   - "!master"
